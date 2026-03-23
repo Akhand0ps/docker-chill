@@ -1,10 +1,10 @@
-import express from "express";
 import dotenv from "dotenv"
 dotenv.config();
+import express from "express";
 
 const app = express();
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT ? process.env.PORT : 8000;
 
 app.get("/",(req,res)=>{
 
