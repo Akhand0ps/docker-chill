@@ -11,6 +11,7 @@ A Docker learning resource with notes, cheatsheets, and examples.
   - Docker run options
   - Working with images
   - Dockerfile basics
+  - Publishing images
 - **concepts/** - Advanced topics
   - Creating custom images
   - Networking
