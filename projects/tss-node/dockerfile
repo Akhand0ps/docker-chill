@@ -1,0 +1,30 @@
+FROM node:22.22.1-alpine3.23 as base
+
+
+# stage 1: build stuff
+
+FROM base as builder
+WORKDIR /home/build
+
+COPY package*.json .
+COPY tsconfig.json .
+
+
+RUN npm install 
+
+COPY src/  src/
+
+RUN npm run build
+
+#stage 2: Runner
+FROM base as runner
+
+WORKDIR /home/app
+
+COPY --from=builder /home/build/dist dist/
+COPY --from=builder /home/build/package*.json .
+
+RUN npm install --omit=dev
+
+
+CMD ["npm","start"]
